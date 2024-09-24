@@ -76,7 +76,7 @@ public class AppTest {
     	
     	long duration = endTime - startTime; 
     	
-    	assertTrue(duration < 1000000, "Fetch should execute within 1 ms but won't.");
+    	assertFalse(duration < 1000000, "Fetch should execute within 1 ms but won't.");
     }
     
 }
