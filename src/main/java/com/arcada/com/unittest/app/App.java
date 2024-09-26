@@ -42,7 +42,8 @@ public class App {
     	if (name.trim().equalsIgnoreCase("hermes"))
     	{
     		return new String[] {"Olivia Miller", "Ethan Johnson", "Ava Roberts", "Liam Walker", "Sophia Thompson", "Jackson Davis", "Mia White", "James Anderson", "Amelia Lewis", "Lucas Moore", "Isabella Harris", "Benjamin Clark", "Emily Young", "Alexander Hall", "Charlotte Allen", "Henry Wright", "Abigail Scott", "Daniel King","Harper Green", "William Baker"};
-    	} else if (name.equalsIgnoreCase("performancefail")) 
+    	} 
+    	else if (name.equalsIgnoreCase("performancefail")) 
     	{ // Use case for performance fail test
     		try 
     		{
