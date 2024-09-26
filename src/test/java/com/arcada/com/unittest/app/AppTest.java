@@ -1,18 +1,14 @@
 package com.arcada.com.unittest.app;
 
-
-
-
 import static org.junit.jupiter.api.Assertions.*;
-
 import java.util.Arrays;
-
 import org.junit.jupiter.api.Test;
 
 /**
  * Unit test for simple App.
  */
-public class AppTest {
+public class AppTest 
+{
 
     /**
      * Rigorous Test :-)
@@ -21,43 +17,56 @@ public class AppTest {
     
     // Positive tests
     @Test
-    public void existsFetchFriends() {
+    public void testFetchFriendsExists() 
+    {
     	assertNotNull(app.fetch("Hermes"), "The array should exist");
     }
     
     @Test
-    public void fetchEquals() {
-    	String[] friends = {"Olivia Miller", "Ethan Johnson", "Ava Roberts", "Liam Walker", "Sophia Thompson", "Jackson Davis", "Mia White", "James Anderson", "Amelia Lewis", "Lucas Moore", "Isabella Harris", "Benjamin Clark", "Emily Young", "Alexander Hall", "Charlotte Allen", "Henry Wright", "Abigail Scott", "Daniel King","Harper Green", "William Baker"};
-    	assertArrayEquals(friends,app.fetch("Hermes"), "The arrays should be identical.");
+    public void testFetchEquals() 
+    {
+    	String[] expectedFriends = {"Olivia Miller", "Ethan Johnson", "Ava Roberts", "Liam Walker", "Sophia Thompson", "Jackson Davis", "Mia White", "James Anderson", "Amelia Lewis", "Lucas Moore", "Isabella Harris", "Benjamin Clark", "Emily Young", "Alexander Hall", "Charlotte Allen", "Henry Wright", "Abigail Scott", "Daniel King","Harper Green", "William Baker"};
+    	assertArrayEquals(expectedFriends, app.fetch("Hermes"), "The arrays should be identical.");
     }
     
     @Test
-    public void personExistsInArray() {
-    	String[] friends = {"Olivia Miller", "Ethan Johnson", "Ava Roberts", "Liam Walker", "Sophia Thompson", "Jackson Davis", "Mia White", "James Anderson", "Amelia Lewis", "Lucas Moore", "Isabella Harris", "Benjamin Clark", "Emily Young", "Alexander Hall", "Charlotte Allen", "Henry Wright", "Abigail Scott", "Daniel King","Harper Green", "William Baker"};
+    public void testPersonExistsInArray() 
+    {
+    	String[] friends = app.fetch("Hermes");
     	assertTrue(Arrays.asList(friends).contains("Ava Roberts"), "The person should exist in the array");
     }
     
     // Negative tests
     @Test
-    public void notExistsFetchFriends() {
-    	assertNull(app.fetch("Petra"));
+    public void testFetchWrongName() 
+    {
+    	assertNull(app.fetch(""), "Petra does not have friends so fetch() returns null/nothing so the result should be false/null");
     }
     
     @Test
-    public void fetchNotEquals() {
+    public void testFetchNotEquals() 
+    {
     	String[] friends = {"Olivia Moller", "Ethan Johnson", "Ava Roberts", "Liam Walker", "Sophia Thompson", "Jackson Davis", "Mia White", "James Anderson", "Amelia Lewis", "Lucas Moore", "Isabella Harris", "Benjamin Clark", "Emily Young", "Alexander Hall", "Charlotte Allen", "Henry Wright", "Abigail Scott", "Daniel King","Harper Green", "William Baker"};
-    	assertFalse(friends == app.fetch("Hermes"));
+    	assertFalse(friends == app.fetch("Hermes"), "The array has been changed slightly from the original and as such should not be the same and return false.");
     }
     
     @Test
-    public void personExistsNotInArray() {
-    	String[] friends = {"Olivia Miller", "Ethan Johnson", "Ava Roberts", "Liam Walker", "Sophia Thompson", "Jackson Davis", "Mia White", "James Anderson", "Amelia Lewis", "Lucas Moore", "Isabella Harris", "Benjamin Clark", "Emily Young", "Alexander Hall", "Charlotte Allen", "Henry Wright", "Abigail Scott", "Daniel King","Harper Green", "William Baker"};
-    	assertFalse(Arrays.asList(friends).contains("John Malkovich"), "The person should exist in the array");
+    public void testPersonDoesNotExistInArray() 
+    {
+    	String friends[] = app.fetch("hermes");
+    	assertFalse(Arrays.asList(friends).contains("John Malkovich"), "The person should not exist in the array");
     }
     
     // Performance test
     @Test
-    public void testFetchPerformance() {
+    public void testFetchPerformance() 
+    {
+    	/*
+    	 * Starts out by taking the time and storing it in a variable, then it executes the basic fetch method,
+    	 * then it takes the time and again stores it in a variable, calculate the difference in time between the
+    	 * two variables and from that check if the duration is less than 1 ms (could be anything) and if it is 
+    	 * return true.
+    	*/
     	
     	long startTime = System.nanoTime();
     	app.fetch("Hermes");
@@ -68,7 +77,12 @@ public class AppTest {
     	assertTrue(duration < 1000000, "Fetch should execute within 1 ms.");
     }
     @Test
-    public void testFetchPerformanceFail() {
+    public void testFetchPerformanceFail() 
+    {
+    	/*
+    	 * Same principle except in the fetch method there is case for performancefail which
+    	 * causes the method to wait for 0.5 seconds and fail the test.
+    	 */
     	
     	long startTime = System.nanoTime();
     	app.fetch("performancefail");
