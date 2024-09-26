@@ -12,3 +12,6 @@
   mvn test
 ```  
 Make sure to have Maven & Java installed and JAVA_HOME set.
+```ps
+  set JAVA_HOME=your_java_directory_here
+```
