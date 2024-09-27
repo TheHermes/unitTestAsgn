@@ -40,14 +40,20 @@ public class AppTest
     @Test
     public void testFetchWrongName() 
     {
-    	assertNull(app.fetch(""), "Petra does not have friends so fetch() returns null/nothing so the result should be false/null");
+    	assertNull(app.fetch("Petra"), "Petra does not have friends so fetch() returns null/nothing so the result should be false/null");
+    }
+    
+    @Test
+    public void testFetchEmpty() 
+    {
+    	assertNull(app.fetch(), "Leaving fetch() empty should return null");
     }
     
     @Test
     public void testFetchNotEquals() 
     {
-    	String[] friends = {"Olivia Moller", "Ethan Johnson", "Ava Roberts", "Liam Walker", "Sophia Thompson", "Jackson Davis", "Mia White", "James Anderson", "Amelia Lewis", "Lucas Moore", "Isabella Harris", "Benjamin Clark", "Emily Young", "Alexander Hall", "Charlotte Allen", "Henry Wright", "Abigail Scott", "Daniel King","Harper Green", "William Baker"};
-    	assertFalse(friends == app.fetch("Hermes"), "The array has been changed slightly from the original and as such should not be the same and return false.");
+    	String[] alteredFriends = {"Olivia Moller", "Ethan Johnson", "Ava Roberts", "Liam Walker", "Sophia Thompson", "Jackson Davis", "Mia White", "James Anderson", "Amelia Lewis", "Lucas Moore", "Isabella Harris", "Benjamin Clark", "Emily Young", "Alexander Hall", "Charlotte Allen", "Henry Wright", "Abigail Scott", "Daniel King","Harper Green", "William Baker"};
+    	assertFalse(alteredFriends == app.fetch("Hermes"), "alteredFriends has been changed slightly from the original friends array and as such should not be the same and return false.");
     }
     
     @Test
@@ -81,7 +87,7 @@ public class AppTest
     {
     	/*
     	 * Same principle except in the fetch method there is case for performancefail which
-    	 * causes the method to wait for 0.5 seconds and fail the test.
+    	 * causes the method to wait for 0.5 seconds.
     	 */
     	
     	long startTime = System.nanoTime();

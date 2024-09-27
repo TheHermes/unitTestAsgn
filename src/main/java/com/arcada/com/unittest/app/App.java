@@ -57,4 +57,9 @@ public class App {
     	// Return null if the inserted name is wrong or otherwise
     	return null;
     }
+    
+    public String[] fetch() {
+    	// Fetches nothing
+    	return null;
+    }
 }
